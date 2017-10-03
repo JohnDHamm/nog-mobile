@@ -1,23 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import Home from './src/screens/home';
+import NogSelect from './src/screens/nogSelect';
+import Playlist from './src/screens/playlist';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
-  }
+const StackNavigatorConfig = {
+	headerMode: 'none',
+	cardStyle: {
+		opacity: 1
+	}
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const MainScreenNavigator = StackNavigator({
+	Home: { screen: Home },
+	NogSelect: { screen: NogSelect },
+	Playlist: { screen: Playlist }
+})
+
+export default class App extends React.Component {
+	render() {
+		return (
+			<MainScreenNavigator />
+		);
+	}
+}
