@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 
 export default class NogSelect extends React.Component {
 	static navigationOptions = {
-		title: 'Play',
+		title: 'Connect to Nog',
 	}
 
 	render() {
@@ -14,7 +14,7 @@ export default class NogSelect extends React.Component {
 					onPress={() => this.props.navigation.navigate('Playlist')}
 					title='Snowflake' />
 				<Button
-					onPress={() => console.log("selected tree nog type")}
+					onPress={() => this.props.navigation.navigate('TestTabNav')}
 					title='Tree' />
 			</View>
 		)

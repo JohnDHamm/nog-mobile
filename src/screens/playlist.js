@@ -2,30 +2,44 @@ import _ from 'lodash';
 
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+// import { TestTabNav } from './testTabNav';
 
 const testList = {
 	1: {
 		name: 'test 01',
-		userID: 1,
+		userId: 1,
 		singleColor: false,
 		description: 'testing desc 1',
 		defaultSpeed: 50
 	},
 	2: {
 		name: 'test 02',
-		userID: 1,
+		userId: 1,
 		singleColor: false,
 		description: 'testing desc 2',
 		defaultSpeed: 75
 	},
 	3: {
 		name: 'test 03',
-		userID: 1,
+		userId: 1,
 		singleColor: false,
 		description: 'testing desc 3',
 		defaultSpeed: 82
 	}
 };
+
+const testSongList = {
+	1: {
+		name: 'song 01',
+		userId: 1,
+		songId: 1
+	},
+	2: {
+		name: 'song 02',
+		userId: 1,
+		songId: 2
+	}
+}
 
 export default class Playlist extends React.Component {
 	static navigationOptions = {
