@@ -14,7 +14,7 @@ export default class NogSelect extends React.Component {
 					onPress={() => this.props.navigation.navigate('Playlist')}
 					title='Snowflake' />
 				<Button
-					onPress={() => this.props.navigation.navigate('TestTabNav')}
+					onPress={() => console.log("selected tree nog type")}
 					title='Tree' />
 			</View>
 		)
