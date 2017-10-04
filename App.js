@@ -5,18 +5,18 @@ import Home from './src/screens/home';
 import NogSelect from './src/screens/nogSelect';
 import Playlist from './src/screens/playlist';
 
-const StackNavigatorConfig = {
-	headerMode: 'none',
-	cardStyle: {
-		opacity: 1
-	}
-}
+// const StackNavigatorConfig = {
+	// headerMode: 'none',
+// 	cardStyle: {
+// 		opacity: 1
+// 	}
+// }
 
 const MainScreenNavigator = StackNavigator({
 	Home: { screen: Home },
 	NogSelect: { screen: NogSelect },
 	Playlist: { screen: Playlist }
-})
+});
 
 export default class App extends React.Component {
 	render() {

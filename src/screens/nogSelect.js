@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 
 export default class NogSelect extends React.Component {
 	static navigationOptions = {
-		title: 'Play',
+		title: 'Connect to Nog',
 	}
 
 	render() {
