@@ -13,10 +13,10 @@ export default class Home extends React.Component {
 					onPress={() => this.props.navigation.navigate('NogSelect')}
 					title='Play' />
 				<Button
-					onPress={() => console.log("go to community")}
-					title='Community' />
+					onPress={() => this.props.navigation.navigate('Community')}
+						title='Community' />
 				<Button
-					onPress={() => console.log("go to create/edit")}
+					onPress={() => this.props.navigation.navigate('Create')}
 					title='Create' />
 			</View>
 		)
