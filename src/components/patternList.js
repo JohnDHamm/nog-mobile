@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
 const testList = {
 	1: {
@@ -35,14 +35,17 @@ export default class PatternList extends React.Component {
 	renderList() {
 		return _.map(testList, pattern => {
 			return (
-				<View key={pattern.name} style={styles.listItem}>
+				<TouchableOpacity
+					key={pattern.name}
+					style={styles.listItem}
+					onPress={() => this.props.navigation.navigate('PatternMultiColor')} >
 					<View>
 						<Text style={styles.name}>{pattern.name}</Text>
 					</View>
 					<View>
 						<Text style={styles.description}>{pattern.description}</Text>
 					</View>
-				</View>
+				</TouchableOpacity>
 			)
 		})
 	}
