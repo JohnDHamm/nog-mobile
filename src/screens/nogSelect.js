@@ -1,21 +1,32 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Picker } from 'react-native';
 
 export default class NogSelect extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			selectedNogType: 'snowflake'
+		}
+	}
+
 	static navigationOptions = {
 		title: 'Connect to Nog',
 	}
 
 	render() {
+		let btnTxt = 'Select ' + this.state.selectedNogType;
 		return (
 			<View>
 				<Text>Select your nog:</Text>
+				<Picker
+				  selectedValue={this.state.selectedNogType}
+				  onValueChange={(itemValue, itemIndex) => this.setState({selectedNogType: itemValue})}>
+				  <Picker.Item label="Snowflake" value="snowflake" />
+				  <Picker.Item label="Tree" value="tree" />
+				</Picker>
 				<Button
 					onPress={() => this.props.navigation.navigate('Playlist')}
-					title='Snowflake' />
-				<Button
-					onPress={() => console.log("selected tree nog type")}
-					title='Tree' />
+					title={btnTxt} />
 			</View>
 		)
 	}

@@ -1,15 +1,21 @@
 import React from 'react';
 // import { StyleSheet, Text, View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import PatternList from './patternList';
-import SongList from './songList';
+import PatternList from '../components/patternList';
+import SongList from '../components/songList';
 
 const PlaylistTabNavigator = TabNavigator({
   PatternList: {
     screen: PatternList,
+    navigationOptions: {
+      tabBarLabel: 'Patterns'
+    }
   },
   SongList: {
     screen: SongList,
+    navigationOptions: {
+      tabBarLabel: 'Songs'
+    }
   },
 }, {
   // tabBarPosition: 'top',
