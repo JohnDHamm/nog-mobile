@@ -18,9 +18,6 @@ const testSongList = {
 }
 
 export default class SongList extends React.Component {
-	static navigationOptions = {
-    tabBarLabel: 'Songs'
-  };
 
 	renderList() {
 		return _.map(testSongList, pattern => {

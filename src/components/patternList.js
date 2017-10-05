@@ -3,6 +3,21 @@ import _ from 'lodash';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
+import { NavigationActions } from 'react-navigation'
+
+// const navigateAction = NavigationActions.navigate({
+//   routeName: 'PatternMultiColor',
+  // params: {},
+  // action: NavigationActions.navigate({ routeName: 'SubProfileRoute'})
+// })
+
+const resetAction = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Home'})
+  ]
+});
+
 const testList = {
 	1: {
 		name: 'test 01',
@@ -28,9 +43,9 @@ const testList = {
 };
 
 export default class PatternList extends React.Component {
-	static navigationOptions = {
-    tabBarLabel: 'Patterns'
-  };
+	// static navigationOptions = {
+ //    tabBarLabel: 'Patterns'
+ //  };
 
 	renderList() {
 		return _.map(testList, pattern => {
@@ -38,7 +53,7 @@ export default class PatternList extends React.Component {
 				<TouchableOpacity
 					key={pattern.name}
 					style={styles.listItem}
-					onPress={() => this.props.navigation.navigate('PatternMultiColor')} >
+					onPress={() => this.props.navigation.dispatch(resetAction)} >
 					<View>
 						<Text style={styles.name}>{pattern.name}</Text>
 					</View>
@@ -83,4 +98,4 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		color: '#666'
 	}
-})
+});

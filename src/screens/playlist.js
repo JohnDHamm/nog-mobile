@@ -7,9 +7,15 @@ import SongList from '../components/songList';
 const PlaylistTabNavigator = TabNavigator({
   PatternList: {
     screen: PatternList,
+    navigationOptions: {
+      tabBarLabel: 'Patterns'
+    }
   },
   SongList: {
     screen: SongList,
+    navigationOptions: {
+      tabBarLabel: 'Songs'
+    }
   },
 }, {
   // tabBarPosition: 'top',
