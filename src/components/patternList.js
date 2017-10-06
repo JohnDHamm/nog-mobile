@@ -3,37 +3,19 @@ import _ from 'lodash';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-const testList = {
-	1: {
-		name: 'test 1',
-		userId: 1,
-		singleColor: false,
-		description: 'testing desc 1',
-		defaultSpeed: 50
-	},
-	2: {
-		name: 'test 02',
-		userId: 1,
-		singleColor: false,
-		description: 'testing desc 2',
-		defaultSpeed: 75
-	},
-	3: {
-		name: 'test 03',
-		userId: 1,
-		singleColor: false,
-		description: 'testing desc 3',
-		defaultSpeed: 82
-	}
-};
+function selectPattern(patternId, {navigation}) {
+	const selectedPattern = navigation.state.params.patterns[patternId];
+	navigation.navigate('PatternPlayback', selectedPattern );
+}
 
 function renderList({navigation}) {
-	return _.map(testList, pattern => {
+	const { patterns } = navigation.state.params;
+	return _.map(patterns, pattern => {
 		return (
 			<TouchableOpacity
-				key={pattern.name}
+				key={pattern.patternId}
 				style={styles.listItem}
-				onPress={() => navigation.navigate('PatternMultiColor')} >
+				onPress={() => selectPattern(pattern.patternId, {navigation})} >
 				<View>
 					<Text style={styles.name}>{pattern.name}</Text>
 				</View>

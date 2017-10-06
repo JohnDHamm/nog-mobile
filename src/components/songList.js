@@ -3,81 +3,25 @@ import _ from 'lodash';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-const testSongList = {
-	1: {
-		name: 'song 1',
-		description: 'song description',
-		userId: 1,
-		songId: 1
-	},
-	2: {
-		name: 'song 2',
-		description: 'song description',
-		userId: 1,
-		songId: 2
-	},
-	3: {
-		name: 'song 3',
-		description: 'song description',
-		userId: 1,
-		songId: 3
-	},
-	4: {
-		name: 'song 4',
-		description: 'song description',
-		userId: 1,
-		songId: 4
-	},
-	5: {
-		name: 'song 5',
-		description: 'song description',
-		userId: 1,
-		songId: 5
-	},
-	6: {
-		name: 'song 6',
-		description: 'song description',
-		userId: 1,
-		songId: 6
-	},
-	7: {
-		name: 'song 7',
-		description: 'song description',
-		userId: 1,
-		songId: 7
-	},
-	8: {
-		name: 'song 8',
-		description: 'song description',
-		userId: 1,
-		songId: 8
-	},
-	9: {
-		name: 'song 9',
-		description: 'song description',
-		userId: 1,
-		songId: 9
-	},
-	10: {
-		name: 'song 10',
-		description: 'song description',
-		userId: 1,
-		songId: 10
-	},
+function selectSong(songId, {navigation}) {
+	const selectedSong = navigation.state.params.songs[songId];
+	console.log("selectedSong", selectedSong);
+	// navigation.navigate('PlaySong', selectedSong ); //need new component for handling playback of songs
 }
 
 function renderList({navigation}) {
-	return _.map(testSongList, pattern => {
+	const { songs } = navigation.state.params;
+	return _.map(songs, song => {
 		return (
 			<TouchableOpacity
-				key={pattern.songId}
+				key={song.songId}
 				style={styles.listItem}
-				onPress={() => navigation.navigate('PatternMultiColor')} >
+				onPress={() => selectSong(song.songId, {navigation})} >
 				<View>
-					<Text style={styles.name}>{pattern.name}</Text>
+					<Text style={styles.name}>{song.name}</Text>
 				</View>
 				<View>
-					<Text style={styles.description}>{pattern.description}</Text>
+					<Text style={styles.description}>{song.description}</Text>
 				</View>
 			</TouchableOpacity>
 		)

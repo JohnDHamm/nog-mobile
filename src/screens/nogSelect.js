@@ -1,5 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, Picker } from 'react-native';
+import TestPatterns from '../../testData/testPatterns';
+import TestSongs from '../../testData/testSongs';
+
 
 export default class NogSelect extends React.Component {
 	constructor(props) {
@@ -25,7 +28,7 @@ export default class NogSelect extends React.Component {
 				  <Picker.Item label="Tree" value="tree" />
 				</Picker>
 				<Button
-					onPress={() => this.props.navigation.navigate('Playlist')}
+					onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, songs: TestSongs })}
 					title={btnTxt} />
 			</View>
 		)
