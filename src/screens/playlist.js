@@ -2,7 +2,7 @@ import React from 'react';
 // import { StyleSheet, Text, View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import PatternList from '../components/patternList';
-import SongList from '../components/songList';
+import SongList2 from '../components/songList2';
 
 const PlaylistTabNavigator = TabNavigator({
   PatternList: {
@@ -11,10 +11,10 @@ const PlaylistTabNavigator = TabNavigator({
       tabBarLabel: 'Patterns'
     }
   },
-  SongList: {
-    screen: SongList,
+  SongList2: {
+    screen: SongList2,
     navigationOptions: {
-      tabBarLabel: 'Songs'
+      tabBarLabel: 'Songs2'
     }
   },
 }, {

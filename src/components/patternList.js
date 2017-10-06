@@ -43,9 +43,6 @@ const testList = {
 };
 
 export default class PatternList extends React.Component {
-	// static navigationOptions = {
- //    tabBarLabel: 'Patterns'
- //  };
 
 	renderList() {
 		return _.map(testList, pattern => {

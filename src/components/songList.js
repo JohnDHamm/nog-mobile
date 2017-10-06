@@ -7,6 +7,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 const testSongList = {
 	1: {
 		name: 'song 01',
+		description: 'test',
 		userId: 1,
 		songId: 1
 	},
