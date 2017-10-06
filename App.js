@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import Home from './src/screens/home';
 import NogSelect from './src/screens/nogSelect';
-import PatternMultiColor from './src/screens/pattern_multiColor';
+import PatternPlayback from './src/screens/patternPlayback';
 import Community from './src/screens/community';
 import Create from './src/screens/create';
 import PatternList from './src/components/patternList';
@@ -40,8 +40,8 @@ const MainScreenNavigator = StackNavigator({
 	Home: { screen: Home },
 	NogSelect: { screen: NogSelect },
 	Playlist: { screen: PlaylistTabNav },
-	PatternMultiColor: {
-		screen: PatternMultiColor,
+	PatternPlayback: {
+		screen: PatternPlayback,
 		navigationOptions: ({navigation}) => ({
       title: navigation.state.params.name,
     }) },

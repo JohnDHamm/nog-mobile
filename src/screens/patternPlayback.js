@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, Slider } from 'react-native';
 
-export default class PatternMultiColor extends React.Component {
+export default class PatternPlayback extends React.Component {
 
 	componentDidMount() {
 		// console.log("this.props.navigation.state.params", this.props.navigation.state.params);

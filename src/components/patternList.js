@@ -3,37 +3,14 @@ import _ from 'lodash';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-const testList = {
-	1: {
-		patternId: 1,
-		name: 'test 1',
-		singleColor: false,
-		description: 'testing desc 1',
-		defaultSpeed: 50
-	},
-	2: {
-		patternId: 2,
-		name: 'test 2',
-		singleColor: false,
-		description: 'testing desc 2',
-		defaultSpeed: 75
-	},
-	3: {
-		patternId: 3,
-		name: 'test 3',
-		singleColor: false,
-		description: 'testing desc 3',
-		defaultSpeed: 25
-	}
-};
-
 function selectPattern(patternId, {navigation}) {
-	const selectedPattern = testList[patternId];
-	navigation.navigate('PatternMultiColor', selectedPattern );
+	const selectedPattern = navigation.state.params.patterns[patternId];
+	navigation.navigate('PatternPlayback', selectedPattern );
 }
 
 function renderList({navigation}) {
-	return _.map(testList, pattern => {
+	const { patterns } = navigation.state.params;
+	return _.map(patterns, pattern => {
 		return (
 			<TouchableOpacity
 				key={pattern.patternId}
