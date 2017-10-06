@@ -3,24 +3,9 @@ import _ from 'lodash';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-import { NavigationActions } from 'react-navigation'
-
-// const navigateAction = NavigationActions.navigate({
-//   routeName: 'PatternMultiColor',
-  // params: {},
-  // action: NavigationActions.navigate({ routeName: 'SubProfileRoute'})
-// })
-
-const resetAction = NavigationActions.reset({
-  index: 0,
-  actions: [
-    NavigationActions.navigate({ routeName: 'Home'})
-  ]
-});
-
 const testList = {
 	1: {
-		name: 'test 01',
+		name: 'test 1',
 		userId: 1,
 		singleColor: false,
 		description: 'testing desc 1',
@@ -42,41 +27,33 @@ const testList = {
 	}
 };
 
-export default class PatternList extends React.Component {
-	// static navigationOptions = {
- //    tabBarLabel: 'Patterns'
- //  };
-
-	renderList() {
-		return _.map(testList, pattern => {
-			return (
-				<TouchableOpacity
-					key={pattern.name}
-					style={styles.listItem}
-					onPress={() => this.props.navigation.dispatch(resetAction)} >
-					<View>
-						<Text style={styles.name}>{pattern.name}</Text>
-					</View>
-					<View>
-						<Text style={styles.description}>{pattern.description}</Text>
-					</View>
-				</TouchableOpacity>
-			)
-		})
-	}
-
-	render() {
+function renderList({navigation}) {
+	return _.map(testList, pattern => {
 		return (
-			<View style={styles.container}>
-				<ScrollView>
-					<View>
-						{this.renderList()}
-					</View>
-				</ScrollView>
-			</View>
+			<TouchableOpacity
+				key={pattern.name}
+				style={styles.listItem}
+				onPress={() => navigation.navigate('PatternMultiColor')} >
+				<View>
+					<Text style={styles.name}>{pattern.name}</Text>
+				</View>
+				<View>
+					<Text style={styles.description}>{pattern.description}</Text>
+				</View>
+			</TouchableOpacity>
 		)
-	}
+	})
 }
+
+const PatternList = ({navigation}) => (
+	<View style={styles.container}>
+		<ScrollView>
+			<View>
+				{renderList({navigation})}
+			</View>
+		</ScrollView>
+	</View>
+)
 
 const styles = StyleSheet.create({
 	container: {
@@ -99,3 +76,5 @@ const styles = StyleSheet.create({
 		color: '#666'
 	}
 });
+
+export default PatternList;

@@ -6,7 +6,7 @@ export default class PatternMultiColor extends React.Component {
 		title: 'pattern',
 	}
 
-	sliderchange(e, val) {
+	sliderchange(val) {
 		console.log("slider val", val);
 	}
 
@@ -20,12 +20,12 @@ export default class PatternMultiColor extends React.Component {
 
 		return (
 			<View>
-				<Text>{testpattern.name}</Text>
-				<Text>{testpattern.description}</Text>
+				<Text>{testPattern.name}</Text>
+				<Text>{testPattern.description}</Text>
 				<Slider
-					minimumValue='1'
-					maximumValue='100'
-					step='1'
+					minimumValue={1}
+					maximumValue={100}
+					step={1}
 					value={testPattern.defaultSpeed}
 					onValueChange={this.sliderchange}
 					/>
