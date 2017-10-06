@@ -7,8 +7,16 @@ export default class PatternMultiColor extends React.Component {
 		// console.log("this.props.navigation.state.params", this.props.navigation.state.params);
 	}
 
-	sliderchange(val) {
-		console.log("slider val", val);
+	speedSliderChange(val) {
+		console.log("speed slider val", val);
+	}
+
+	colorSliderChange(val) {
+		console.log("color slider val", val);
+	}
+
+	startPattern() {
+		console.log("start the magic via bluetooth");
 	}
 
 	render() {
@@ -19,15 +27,29 @@ export default class PatternMultiColor extends React.Component {
 				{pattern.singleColor ?
 					<Text>single color</Text> : <Text>multi-color</Text>}
 				<Text>{pattern.description}</Text>
-				<Slider
-					minimumValue={1}
-					maximumValue={100}
-					step={1}
-					value={pattern.defaultSpeed}
-					onValueChange={this.sliderchange}
-					/>
+				<View>
+					<Text>speed</Text>
+					<Slider
+						minimumValue={1}
+						maximumValue={100}
+						step={1}
+						value={pattern.defaultSpeed}
+						onValueChange={this.speedSliderChange}
+						/>
+				</View>
+				{pattern.singleColor &&
+					<View>
+						<Text>color</Text>
+						<Slider
+							minimumValue={1}
+							maximumValue={100}
+							step={1}
+							value={pattern.defaultColor}
+							onValueChange={this.colorSliderChange}
+							/>
+					</View>}
 				<Button
-					onPress={() => this.props.navigation.navigate('NogSelect')}
+					onPress={this.startPattern}
 					title='Play' />
 			</View>
 		)

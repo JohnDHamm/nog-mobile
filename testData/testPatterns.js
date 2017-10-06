@@ -10,6 +10,7 @@ export default  TestPatterns = {
 		patternId: 2,
 		name: 'test pattern 2',
 		singleColor: true,
+		defaultColor: 33,
 		description: 'testing desc 2',
 		defaultSpeed: 75
 	},
