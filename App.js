@@ -40,7 +40,11 @@ const MainScreenNavigator = StackNavigator({
 	Home: { screen: Home },
 	NogSelect: { screen: NogSelect },
 	Playlist: { screen: PlaylistTabNav },
-	PatternMultiColor: { screen: PatternMultiColor },
+	PatternMultiColor: {
+		screen: PatternMultiColor,
+		navigationOptions: ({navigation}) => ({
+      title: navigation.state.params.name,
+    }) },
 	Community: { screen: Community },
 	Create: { screen: Create }
 });

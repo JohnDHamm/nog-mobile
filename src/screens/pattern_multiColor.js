@@ -2,8 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, Slider } from 'react-native';
 
 export default class PatternMultiColor extends React.Component {
-	static navigationOptions = {
-		title: 'pattern',
+
+	componentDidMount() {
+		// console.log("this.props.navigation.state.params", this.props.navigation.state.params);
 	}
 
 	sliderchange(val) {
@@ -11,22 +12,18 @@ export default class PatternMultiColor extends React.Component {
 	}
 
 	render() {
-		const testPattern = {
-			name: 'test pattern',
-			description: 'this is the description of the test pattern for testing layout in the pattern screen. this is only a test',
-			singlecolor: false,
-			defaultSpeed: 50
-		}
+		const pattern = this.props.navigation.state.params;
 
 		return (
 			<View>
-				<Text>{testPattern.name}</Text>
-				<Text>{testPattern.description}</Text>
+				{pattern.singleColor ?
+					<Text>single color</Text> : <Text>multi-color</Text>}
+				<Text>{pattern.description}</Text>
 				<Slider
 					minimumValue={1}
 					maximumValue={100}
 					step={1}
-					value={testPattern.defaultSpeed}
+					value={pattern.defaultSpeed}
 					onValueChange={this.sliderchange}
 					/>
 				<Button

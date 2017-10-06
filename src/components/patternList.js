@@ -5,35 +5,40 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 
 const testList = {
 	1: {
+		patternId: 1,
 		name: 'test 1',
-		userId: 1,
 		singleColor: false,
 		description: 'testing desc 1',
 		defaultSpeed: 50
 	},
 	2: {
-		name: 'test 02',
-		userId: 1,
+		patternId: 2,
+		name: 'test 2',
 		singleColor: false,
 		description: 'testing desc 2',
 		defaultSpeed: 75
 	},
 	3: {
-		name: 'test 03',
-		userId: 1,
+		patternId: 3,
+		name: 'test 3',
 		singleColor: false,
 		description: 'testing desc 3',
-		defaultSpeed: 82
+		defaultSpeed: 25
 	}
 };
+
+function selectPattern(patternId, {navigation}) {
+	const selectedPattern = testList[patternId];
+	navigation.navigate('PatternMultiColor', selectedPattern );
+}
 
 function renderList({navigation}) {
 	return _.map(testList, pattern => {
 		return (
 			<TouchableOpacity
-				key={pattern.name}
+				key={pattern.patternId}
 				style={styles.listItem}
-				onPress={() => navigation.navigate('PatternMultiColor')} >
+				onPress={() => selectPattern(pattern.patternId, {navigation})} >
 				<View>
 					<Text style={styles.name}>{pattern.name}</Text>
 				</View>

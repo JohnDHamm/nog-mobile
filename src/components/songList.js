@@ -66,18 +66,24 @@ const testSongList = {
 	},
 }
 
+function selectsong(songId, {navigation}) {
+	const selectedSong = testSongList[songId];
+	console.log("selectedSong", selectedSong);
+	// navigation.navigate('PlaySong', selectedSong ); //need new component for handling playback of songs
+}
+
 function renderList({navigation}) {
-	return _.map(testSongList, pattern => {
+	return _.map(testSongList, song => {
 		return (
 			<TouchableOpacity
-				key={pattern.songId}
+				key={song.songId}
 				style={styles.listItem}
-				onPress={() => navigation.navigate('PatternMultiColor')} >
+				onPress={() => selectsong(song.songId, {navigation})} >
 				<View>
-					<Text style={styles.name}>{pattern.name}</Text>
+					<Text style={styles.name}>{song.name}</Text>
 				</View>
 				<View>
-					<Text style={styles.description}>{pattern.description}</Text>
+					<Text style={styles.description}>{song.description}</Text>
 				</View>
 			</TouchableOpacity>
 		)
