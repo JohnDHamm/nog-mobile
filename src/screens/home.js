@@ -1,13 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Button, Image, Dimensions } from 'react-native';
+
+import HomeBtn from '../components/homeBtn';
 
 import TestUser from '../../testData/testUser';
+import TestPatterns from '../../testData/testPatterns';
+import TestSongs from '../../testData/testSongs';
 import values from '../styles/values';
 
 export default class Home extends React.Component {
 	static navigationOptions = {
-	// 	title: 'Nog',
 		header: null
+	};
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			connected: false
+		}
+	}
+
+	toggleConnect() {
+		this.setState({connected: !this.state.connected});
 	};
 
 	render() {
@@ -25,19 +39,66 @@ export default class Home extends React.Component {
 						source={require('../img/buddy_elf.png')} />
 					<Text style={styles.userName}>{TestUser.name}</Text>
 				</View>
-				<Button
-					onPress={() => this.props.navigation.navigate('NogSelect')}
-					title='Play' />
-				<Button
-					onPress={() => this.props.navigation.navigate('Community')}
-						title='Community' />
-				<Button
-					onPress={() => this.props.navigation.navigate('Create')}
-					title='Create' />
+
+				<TouchableOpacity
+					onPress={() => this.toggleConnect()} >
+					{ !this.state.connected ?
+						<HomeBtn
+							color={values.nogRed}
+							height={65}
+							label={'connect to nog'}
+							iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+							optionImgSrc={null} />
+						:
+						<HomeBtn
+							color={values.nogGreen}
+							height={65}
+							label={'connected'}
+							iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+							optionImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
+					}
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, songs: TestSongs })} >
+					<HomeBtn
+						color={values.nogGreen}
+						height={65}
+						label={'play'}
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						optionImgSrc={null} />
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					onPress={() => this.props.navigation.navigate('Create')} >
+					<HomeBtn
+						color={values.nogGreen}
+						height={65}
+						label={'create'}
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						optionImgSrc={null} />
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					onPress={() => this.props.navigation.navigate('Community')} >
+					<HomeBtn
+						color={values.nogGreen}
+						height={65}
+						label={'community'}
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						optionImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
+				</TouchableOpacity>
+
 			</View>
 		)
 	}
 }
+
+const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width;
+const nogTitleAspect = 813 / 627;
+let nogTitleHeight = screenHeight - 445;
+nogTitleHeight * nogTitleAspect > screenWidth * .75 ? nogTitleHeight = screenWidth * .75 / nogTitleAspect : null;
 
 const styles = StyleSheet.create({
 	container: {
@@ -45,16 +106,15 @@ const styles = StyleSheet.create({
 		backgroundColor: values.nogRed,
 		paddingLeft: 20,
 		paddingRight: 20,
-		paddingTop: 40
+		paddingTop: 30
 	},
 	nogTitle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
 	},
 	nogLogo: {
-		//orig size - 813x627@300ppi
-		width: 813 / 627 * 150,
-		height: 150,
+		width: nogTitleAspect * nogTitleHeight,
+		height: nogTitleHeight,
 	},
 	userView: {
 		flexDirection: 'row',
