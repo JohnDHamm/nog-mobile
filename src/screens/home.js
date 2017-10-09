@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Button, Image, Dimensions } from 'react-native';
 
 import HomeBtn from '../components/homeBtn';
 
@@ -11,6 +11,17 @@ import values from '../styles/values';
 export default class Home extends React.Component {
 	static navigationOptions = {
 		header: null
+	};
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			connected: false
+		}
+	}
+
+	toggleConnect() {
+		this.setState({connected: !this.state.connected});
 	};
 
 	render() {
@@ -30,13 +41,22 @@ export default class Home extends React.Component {
 				</View>
 
 				<TouchableOpacity
-					onPress={() => console.log("connect")} >
-					<HomeBtn
-						color={values.nogRed}
-						height={65}
-						label={'connect to nog'}
-						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
-						optionImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
+					onPress={() => this.toggleConnect()} >
+					{ !this.state.connected ?
+						<HomeBtn
+							color={values.nogRed}
+							height={65}
+							label={'connect to nog'}
+							iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+							optionImgSrc={null} />
+						:
+						<HomeBtn
+							color={values.nogGreen}
+							height={65}
+							label={'connected'}
+							iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+							optionImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
+					}
 				</TouchableOpacity>
 
 				<TouchableOpacity
@@ -74,22 +94,27 @@ export default class Home extends React.Component {
 	}
 }
 
+const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width;
+const nogTitleAspect = 813 / 627;
+let nogTitleHeight = screenHeight - 445;
+nogTitleHeight * nogTitleAspect > screenWidth * .75 ? nogTitleHeight = screenWidth * .75 / nogTitleAspect : null;
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: values.nogRed,
 		paddingLeft: 20,
 		paddingRight: 20,
-		paddingTop: 40
+		paddingTop: 30
 	},
 	nogTitle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
 	},
 	nogLogo: {
-		//orig size - 813x627@300ppi
-		width: 813 / 627 * 150,
-		height: 150,
+		width: nogTitleAspect * nogTitleHeight,
+		height: nogTitleHeight,
 	},
 	userView: {
 		flexDirection: 'row',
