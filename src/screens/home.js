@@ -35,7 +35,8 @@ export default class Home extends React.Component {
 						color={values.nogRed}
 						height={65}
 						label={'connect to nog'}
-						option={false} />
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						optionImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
 				</TouchableOpacity>
 
 				<TouchableOpacity
@@ -44,7 +45,8 @@ export default class Home extends React.Component {
 						color={values.nogGreen}
 						height={65}
 						label={'play'}
-						option={false} />
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						optionImgSrc={null} />
 				</TouchableOpacity>
 
 				<TouchableOpacity
@@ -53,7 +55,8 @@ export default class Home extends React.Component {
 						color={values.nogGreen}
 						height={65}
 						label={'create'}
-						option={false} />
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						optionImgSrc={null} />
 				</TouchableOpacity>
 
 				<TouchableOpacity
@@ -62,7 +65,8 @@ export default class Home extends React.Component {
 						color={values.nogGreen}
 						height={65}
 						label={'community'}
-						option={true} />
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						optionImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
 				</TouchableOpacity>
 
 			</View>

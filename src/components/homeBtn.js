@@ -5,7 +5,7 @@ export default class HomeBtn extends React.Component {
 
 	render() {
 
-		const { color, label, height, option } = this.props;
+		const { color, label, height, option, iconImgSrc, optionImgSrc } = this.props;
 
 		const styles = StyleSheet.create({
 			container: {
@@ -45,44 +45,20 @@ export default class HomeBtn extends React.Component {
 			}
 		});
 
-		// let iconUrl = '';
-		// let optionIconUrl = '';
-		// switch (label) {
-		// 	case 'connect to nog':
-		// 		// iconUrl = require('../img/homeBtnIcons/disconnected.png');
-		// 		iconUrl = require('../img/homeBtnIcons/homeBtnIcon_play.jpg');
-		// 		break;
-		// 	case 'connected':
-		// 		iconUrl = require('../img/homeBtnIcons/homeBtnIcon_play.jpg');
-		// 		// iconUrl = require('../img/homeBtnIcons/connected.png');
-		// 		break;
-		// 	case 'play':
-		// 		iconUrl = require('../img/homeBtnIcons/homeBtnIcon_play.jpg');
-		// 		break;
-		// 	case 'create':
-		// 		iconUrl = require('../img/homeBtnIcons/homeBtnIcon_play.jpg');
-		// 		break;
-		// 	case 'community':
-		// 		iconUrl = require('../img/homeBtnIcons/homeBtnIcon_play.jpg');
-		// 		optionIconUrl = require('..img/homeBtnIcons/homeBtnIcon_play.jpg');
-		// 		break;
-		// };
-
-
 		return (
 			<View style={styles.container}>
 				<View style={styles.main}>
 					<View style={styles.icon}>
 						<Image
 							style={styles.img}
-							source={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
+							source={iconImgSrc} />
 					</View>
 					<Text style={styles.label}>{label}</Text>
 				</View>
-				{ option &&
+				{ optionImgSrc !== null &&
 					<Image
 						style={styles.optionIcon}
-						source={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
+						source={optionImgSrc} />
 				}
 			</View>
 		)
