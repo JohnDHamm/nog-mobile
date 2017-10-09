@@ -39,7 +39,10 @@ const PlaylistTabNav = TabNavigator({
 const MainScreenNavigator = StackNavigator({
 	Home: { screen: Home },
 	NogSelect: { screen: NogSelect },
-	Playlist: { screen: PlaylistTabNav },
+	Playlist: { screen: PlaylistTabNav,
+		navigationOptions: {
+			title: 'Playlist'
+		} },
 	PatternPlayback: {
 		screen: PatternPlayback,
 		navigationOptions: ({navigation}) => ({
