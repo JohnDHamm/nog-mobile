@@ -2,11 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, Image } from 'react-native';
 
 import TestUser from '../../testData/testUser';
+import TestPatterns from '../../testData/testPatterns';
+import TestSongs from '../../testData/testSongs';
 import values from '../styles/values';
 
 export default class Home extends React.Component {
 	static navigationOptions = {
-	// 	title: 'Nog',
 		header: null
 	};
 
@@ -25,8 +26,9 @@ export default class Home extends React.Component {
 						source={require('../img/buddy_elf.png')} />
 					<Text style={styles.userName}>{TestUser.name}</Text>
 				</View>
+
 				<Button
-					onPress={() => this.props.navigation.navigate('NogSelect')}
+					onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, songs: TestSongs })}
 					title='Play' />
 				<Button
 					onPress={() => this.props.navigation.navigate('Community')}
