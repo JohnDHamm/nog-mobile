@@ -34,7 +34,8 @@ export default class Home extends React.Component {
 					<HomeBtn
 						color={values.nogRed}
 						height={65}
-						label={'connect to nog'} />
+						label={'connect to nog'}
+						option={false} />
 				</TouchableOpacity>
 
 				<TouchableOpacity
@@ -42,7 +43,8 @@ export default class Home extends React.Component {
 					<HomeBtn
 						color={values.nogGreen}
 						height={65}
-						label={'play'} />
+						label={'play'}
+						option={false} />
 				</TouchableOpacity>
 
 				<TouchableOpacity
@@ -50,7 +52,8 @@ export default class Home extends React.Component {
 					<HomeBtn
 						color={values.nogGreen}
 						height={65}
-						label={'create'} />
+						label={'create'}
+						option={false} />
 				</TouchableOpacity>
 
 				<TouchableOpacity
@@ -58,7 +61,8 @@ export default class Home extends React.Component {
 					<HomeBtn
 						color={values.nogGreen}
 						height={65}
-						label={'community'} />
+						label={'community'}
+						option={true} />
 				</TouchableOpacity>
 
 			</View>
