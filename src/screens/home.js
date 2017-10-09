@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, Image } from 'react-native';
 
+import HomeBtn from '../components/homeBtn';
+
 import TestUser from '../../testData/testUser';
 import TestPatterns from '../../testData/testPatterns';
 import TestSongs from '../../testData/testSongs';
@@ -27,15 +29,38 @@ export default class Home extends React.Component {
 					<Text style={styles.userName}>{TestUser.name}</Text>
 				</View>
 
-				<Button
-					onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, songs: TestSongs })}
-					title='Play' />
-				<Button
-					onPress={() => this.props.navigation.navigate('Community')}
-						title='Community' />
-				<Button
-					onPress={() => this.props.navigation.navigate('Create')}
-					title='Create' />
+				<TouchableOpacity
+					onPress={() => console.log("connect")} >
+					<HomeBtn
+						color={values.nogRed}
+						height={65}
+						label={'connect to nog'} />
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, songs: TestSongs })} >
+					<HomeBtn
+						color={values.nogGreen}
+						height={65}
+						label={'play'} />
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					onPress={() => this.props.navigation.navigate('Create')} >
+					<HomeBtn
+						color={values.nogGreen}
+						height={65}
+						label={'create'} />
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					onPress={() => this.props.navigation.navigate('Community')} >
+					<HomeBtn
+						color={values.nogGreen}
+						height={65}
+						label={'community'} />
+				</TouchableOpacity>
+
 			</View>
 		)
 	}
