@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import PatternColorIcon from './patternColorIcon';
 import values from '../styles/values';
 
 function selectPattern(patternId, {navigation}) {
@@ -11,20 +12,27 @@ function selectPattern(patternId, {navigation}) {
 
 function truncDesc(desc) {
 	return (desc.length > 97) ? desc.slice(0, 98) + "..." : desc;
-	// return trunc;
 }
 
 function renderList({navigation}) {
 	const { patterns } = navigation.state.params;
 	return _.map(patterns, pattern => {
-		// const truncDescText = truncDesc(pattern.description);
 		return (
 			<TouchableOpacity
 				key={pattern.patternId}
 				style={styles.listItem}
 				onPress={() => selectPattern(pattern.patternId, {navigation})} >
-				<View>
+				<View style={styles.topBlock}>
 					<Text style={styles.name}>{pattern.name}</Text>
+					{ pattern.singleColor ?
+						<PatternColorIcon
+							imgSrc={require('../img/patterns/singleColor_icon.png')}
+							height={12} />
+						:
+						<PatternColorIcon
+							imgSrc={require('../img/patterns/multiColor_icon.png')}
+							height={12} />
+					}
 				</View>
 				<View>
 					<Text style={styles.description}>{truncDesc(pattern.description)}</Text>
@@ -53,13 +61,19 @@ const styles = StyleSheet.create({
 		paddingTop: 5,
 		paddingBottom: 5,
 		paddingLeft: 15,
-		// borderBottomWidth: 1,
-		// borderStyle: 'solid',
-		// borderColor: values.nogGreen,
+	},
+	topBlock: {
+		flexDirection: 'row',
+		alignItems: 'center'
 	},
 	name: {
 		fontSize: 25,
-		color: '#000'
+		color: '#000',
+		paddingRight: 5
+	},
+	colorIcon: {
+		height: 25,
+		width: 50
 	},
 	description: {
 		fontSize: 15,
