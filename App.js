@@ -60,16 +60,20 @@ const MainScreenNavigator = StackNavigator({
 			headerStyle: {
 				backgroundColor: values.nogRed
 			},
-			headerTintColor: 'white',
-			// headerBackTitleStyle: {
-			// 	color: 'white'
-			// }
+			headerTintColor: 'white'
 		}
 	},
 	PatternPlayback: {
 		screen: PatternPlayback,
 		navigationOptions: ({navigation}) => ({
       title: navigation.state.params.name,
+      headerTitleStyle: {
+				color: 'white'
+			},
+			headerStyle: {
+				backgroundColor: values.nogRed
+			},
+			headerTintColor: 'white'
     }) },
 	Community: { screen: Community },
 	Create: { screen: Create }
