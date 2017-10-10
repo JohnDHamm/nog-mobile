@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import Home from './src/screens/home';
 import NogSelect from './src/screens/nogSelect';
@@ -8,18 +8,22 @@ import Community from './src/screens/community';
 import Create from './src/screens/create';
 import PatternList from './src/components/patternList';
 import SongList from './src/components/songList';
+import values from './src/styles/values';
 
-// const StackNavigatorConfig = {
-	// headerMode: 'none',
+
+const StackNavigatorConfig = {
+	headerMode: 'screen',
 // 	cardStyle: {
 // 		opacity: 1
 // 	}
-// }
+}
+
 const PlaylistTabNav = TabNavigator({
 	PatternList: {
     screen: PatternList,
     navigationOptions: {
-      tabBarLabel: 'Patterns'
+      tabBarLabel: 'Patterns',
+      // tabBarIcon: {}
     }
   },
   SongList: {
@@ -32,7 +36,15 @@ const PlaylistTabNav = TabNavigator({
   // tabBarPosition: 'top',
   animationEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#e91e63',
+    activeTintColor: (Platform.OS === 'ios') ? values.nogRed : values.nogHighlight,
+    indicatorStyle: {
+    	backgroundColor: values.nogHighlight
+    },
+    style: {
+    	backgroundColor: (Platform.OS === 'ios') ? 'white' : values.nogGreen
+    }
+
+
   },
 });
 
@@ -41,8 +53,19 @@ const MainScreenNavigator = StackNavigator({
 	// NogSelect: { screen: NogSelect },
 	Playlist: { screen: PlaylistTabNav,
 		navigationOptions: {
-			title: 'Playlist'
-		} },
+			title: 'Playlist',
+			headerTitleStyle: {
+				color: 'white'
+			},
+			headerStyle: {
+				backgroundColor: values.nogRed
+			},
+			headerTintColor: 'white',
+			// headerBackTitleStyle: {
+			// 	color: 'white'
+			// }
+		}
+	},
 	PatternPlayback: {
 		screen: PatternPlayback,
 		navigationOptions: ({navigation}) => ({
@@ -50,7 +73,7 @@ const MainScreenNavigator = StackNavigator({
     }) },
 	Community: { screen: Community },
 	Create: { screen: Create }
-});
+}, StackNavigatorConfig);
 
 export default class App extends React.Component {
 	render() {
