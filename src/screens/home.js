@@ -44,30 +44,39 @@ export default class Home extends React.Component {
 					onPress={() => this.toggleConnect()} >
 					{ !this.state.connected ?
 						<HomeBtn
-							color={values.nogRed}
+							color={values.nogDisabled}
 							height={65}
 							label={'connect to nog'}
-							iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+							iconImgSrc={require('../img/homeBtnIcons/bluetooth_icon_disabled.png')}
 							optionImgSrc={null} />
 						:
 						<HomeBtn
 							color={values.nogGreen}
 							height={65}
 							label={'connected'}
-							iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
-							optionImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
+							iconImgSrc={require('../img/homeBtnIcons/bluetooth_icon_connected.png')}
+							optionImgSrc={require('../img/homeBtnIcons/cancel_outline_nogRed.png')} />
 					}
 				</TouchableOpacity>
 
-				<TouchableOpacity
-					onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, songs: TestSongs })} >
+				{ !this.state.connected ?
 					<HomeBtn
-						color={values.nogGreen}
+						color={values.nogDisabled}
 						height={65}
 						label={'play'}
-						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play_disabled.png')}
 						optionImgSrc={null} />
-				</TouchableOpacity>
+					:
+					<TouchableOpacity
+						onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, songs: TestSongs })} >
+						<HomeBtn
+							color={values.nogGreen}
+							height={65}
+							label={'play'}
+							iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.png')}
+							optionImgSrc={null} />
+					</TouchableOpacity>
+				}
 
 				<TouchableOpacity
 					onPress={() => this.props.navigation.navigate('Create')} >
@@ -75,7 +84,7 @@ export default class Home extends React.Component {
 						color={values.nogGreen}
 						height={65}
 						label={'create'}
-						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_create.png')}
 						optionImgSrc={null} />
 				</TouchableOpacity>
 
@@ -85,8 +94,8 @@ export default class Home extends React.Component {
 						color={values.nogGreen}
 						height={65}
 						label={'community'}
-						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
-						optionImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_community.png')}
+						optionImgSrc={require('../img/homeBtnIcons/notification_3.png')} />
 				</TouchableOpacity>
 
 			</View>

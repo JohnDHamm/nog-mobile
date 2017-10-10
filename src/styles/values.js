@@ -4,7 +4,7 @@ const values =  {
 	nogBackground: '#1A1A1A',
 	nogGrayText: '#5C5C5C',
 	nogDarkGray: '#333',
-	nogDisabled: '#222'
+	nogDisabled: '#888'
 };
 
 export default values;
