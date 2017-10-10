@@ -64,7 +64,7 @@ export default class Home extends React.Component {
 						color={values.nogDisabled}
 						height={65}
 						label={'play'}
-						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play_disabled.png')}
 						optionImgSrc={null} />
 					:
 					<TouchableOpacity
@@ -73,7 +73,7 @@ export default class Home extends React.Component {
 							color={values.nogGreen}
 							height={65}
 							label={'play'}
-							iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+							iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.png')}
 							optionImgSrc={null} />
 					</TouchableOpacity>
 				}
