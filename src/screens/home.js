@@ -84,7 +84,7 @@ export default class Home extends React.Component {
 						color={values.nogGreen}
 						height={65}
 						label={'create'}
-						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_create.png')}
 						optionImgSrc={null} />
 				</TouchableOpacity>
 
@@ -94,8 +94,8 @@ export default class Home extends React.Component {
 						color={values.nogGreen}
 						height={65}
 						label={'community'}
-						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')}
-						optionImgSrc={require('../img/homeBtnIcons/homeBtnIcon_play.jpg')} />
+						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_community.png')}
+						optionImgSrc={require('../img/homeBtnIcons/notification_3.png')} />
 				</TouchableOpacity>
 
 			</View>
