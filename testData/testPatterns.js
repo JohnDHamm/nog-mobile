@@ -1,17 +1,17 @@
 export default  TestPatterns = {
 	1: {
 		patternId: 1,
-		name: 'test pattern 1',
-		singleColor: false,
-		description: 'testing desc 1',
+		name: 'blink',
+		singleColor: true,
+		description: 'Simple 2 step blink, alternates between inner/outer lights and the middle ring.',
 		defaultSpeed: 50
 	},
 	2: {
 		patternId: 2,
-		name: 'test pattern 2',
-		singleColor: true,
+		name: 'chase',
+		singleColor: false,
 		defaultColor: 33,
-		description: 'testing desc 2',
+		description: 'Starting at top, lights turn on (random color) in a clockwise direction, then turn off in same order, then repeat with new random color.',
 		defaultSpeed: 75
 	},
 	3: {

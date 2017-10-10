@@ -2,10 +2,16 @@ import _ from 'lodash';
 
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import PatternColorIcon from './patternColorIcon';
+import values from '../styles/values';
 
 function selectPattern(patternId, {navigation}) {
 	const selectedPattern = navigation.state.params.patterns[patternId];
 	navigation.navigate('PatternPlayback', selectedPattern );
+}
+
+function truncDesc(desc) {
+	return (desc.length > 97) ? desc.slice(0, 98) + "..." : desc;
 }
 
 function renderList({navigation}) {
@@ -16,11 +22,20 @@ function renderList({navigation}) {
 				key={pattern.patternId}
 				style={styles.listItem}
 				onPress={() => selectPattern(pattern.patternId, {navigation})} >
-				<View>
+				<View style={styles.topBlock}>
 					<Text style={styles.name}>{pattern.name}</Text>
+					{ pattern.singleColor ?
+						<PatternColorIcon
+							imgSrc={require('../img/patterns/singleColor_icon.png')}
+							height={12} />
+						:
+						<PatternColorIcon
+							imgSrc={require('../img/patterns/multiColor_icon.png')}
+							height={12} />
+					}
 				</View>
 				<View>
-					<Text style={styles.description}>{pattern.description}</Text>
+					<Text style={styles.description}>{truncDesc(pattern.description)}</Text>
 				</View>
 			</TouchableOpacity>
 		)
@@ -39,23 +54,30 @@ const PatternList = ({navigation}) => (
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1
+		flex: 1,
+		paddingTop: 5
 	},
 	listItem: {
-		paddingTop: 10,
-		paddingBottom: 10,
-		paddingLeft: 10,
-		borderWidth: 1,
-		borderStyle: 'solid',
-		borderColor: '#666',
+		paddingTop: 5,
+		paddingBottom: 5,
+		paddingLeft: 15,
+	},
+	topBlock: {
+		flexDirection: 'row',
+		alignItems: 'center'
 	},
 	name: {
 		fontSize: 25,
-		color: '#000'
+		color: '#000',
+		paddingRight: 5
+	},
+	colorIcon: {
+		height: 25,
+		width: 50
 	},
 	description: {
 		fontSize: 15,
-		color: '#666'
+		color: values.nogGrayText
 	}
 });
 
