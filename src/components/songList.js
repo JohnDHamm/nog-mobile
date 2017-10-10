@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import values from '../styles/values';
 
 function selectSong(songId, {navigation}) {
 	const selectedSong = navigation.state.params.songs[songId];
@@ -45,10 +46,10 @@ const styles = StyleSheet.create({
 	listItem: {
 		paddingTop: 10,
 		paddingBottom: 10,
-		paddingLeft: 10,
-		borderWidth: 1,
+		paddingLeft: 15,
+		borderBottomWidth: 1,
 		borderStyle: 'solid',
-		borderColor: '#666',
+		borderColor: values.nogGreen,
 	},
 	name: {
 		fontSize: 25,
