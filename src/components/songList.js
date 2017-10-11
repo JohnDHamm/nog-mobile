@@ -41,15 +41,13 @@ const SongList = ({navigation}) => (
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1
+		flex: 1,
+		paddingTop: 5
 	},
 	listItem: {
 		paddingTop: 10,
 		paddingBottom: 10,
-		paddingLeft: 15,
-		borderBottomWidth: 1,
-		borderStyle: 'solid',
-		borderColor: values.nogGreen,
+		paddingLeft: 15
 	},
 	name: {
 		fontSize: 25,
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
 	},
 	description: {
 		fontSize: 15,
-		color: '#666'
+		color: values.nogGrayText
 	}
 })
 
