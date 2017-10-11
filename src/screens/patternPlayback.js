@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button, Slider, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Button, Slider, Image, Platform } from 'react-native';
 import values from '../styles/values';
 
 export default class PatternMultiColor extends React.Component {
@@ -7,7 +7,7 @@ export default class PatternMultiColor extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			playing: false
+			playing: false,
 		}
 	}
 
@@ -35,6 +35,12 @@ export default class PatternMultiColor extends React.Component {
 	render() {
 		const pattern = this.props.navigation.state.params;
 
+		//fix for react-native bug that reverses min + max trackTintColor on platforms
+		let sliderMinTrackColor;
+		sliderMinTrackColor = (Platform.OS === 'ios') ? values.nogGreen : null;
+		let sliderMaxTrackColor;
+		sliderMaxTrackColor = (Platform.OS !== 'ios') ? values.nogGreen : null;
+
 		return (
 			<View style={styles.container}>
 				<View style={styles.topBlock}>
@@ -46,7 +52,8 @@ export default class PatternMultiColor extends React.Component {
 							maximumValue={100}
 							step={1}
 							value={pattern.defaultSpeed}
-							minimumTrackTintColor={values.nogGreen}
+							minimumTrackTintColor={sliderMinTrackColor}
+							maximumTrackTintColor={sliderMaxTrackColor}
 							onSlidingComplete={this.speedSliderChange}
 							/>
 					</View>
