@@ -43,7 +43,7 @@ export default class PatternMultiColor extends React.Component {
 							step={1}
 							value={pattern.defaultSpeed}
 							minimumTrackTintColor={values.nogGreen}
-							onValueChange={this.speedSliderChange}
+							onSlidingComplete={this.speedSliderChange}
 							/>
 					</View>
 					{pattern.singleColor &&
@@ -55,7 +55,7 @@ export default class PatternMultiColor extends React.Component {
 								step={1}
 								value={pattern.defaultColor}
 								minimumTrackTintColor={values.nogGreen}
-								onValueChange={this.colorSliderChange}
+								onSlidingComplete={this.colorSliderChange}
 								/>
 						</View>}
 				</View>
