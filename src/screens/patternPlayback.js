@@ -16,11 +16,15 @@ export default class PatternMultiColor extends React.Component {
 	}
 
 	speedSliderChange(val) {
-		console.log("speed slider val", val);
+		console.log("speed", val);
 	}
 
-	colorSliderChange(val) {
-		console.log("color slider val", val);
+	hueSliderChange(val) {
+		console.log("color hue", val);
+	}
+
+	valueSliderChange(val) {
+		console.log("color value", val);
 	}
 
 	togglePlayPause() {
@@ -55,7 +59,15 @@ export default class PatternMultiColor extends React.Component {
 								step={1}
 								value={pattern.defaultColor}
 								minimumTrackTintColor={values.nogGreen}
-								onSlidingComplete={this.colorSliderChange}
+								onSlidingComplete={this.hueSliderChange}
+								/>
+							<Slider
+								minimumValue={1}
+								maximumValue={100}
+								step={1}
+								value={pattern.defaultColor}
+								minimumTrackTintColor={values.nogGreen}
+								onSlidingComplete={this.valueSliderChange}
 								/>
 						</View>}
 				</View>
