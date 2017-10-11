@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button, Slider, Image, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Button, Image, Platform, Dimensions } from 'react-native';
+import Slider from 'react-native-slider';
 import values from '../styles/values';
 
 export default class PatternMultiColor extends React.Component {
@@ -35,48 +36,63 @@ export default class PatternMultiColor extends React.Component {
 	render() {
 		const pattern = this.props.navigation.state.params;
 
-		//fix for react-native bug that reverses min + max trackTintColor on platforms
-		let sliderMinTrackColor;
-		sliderMinTrackColor = (Platform.OS === 'ios') ? values.nogGreen : null;
-		let sliderMaxTrackColor;
-		sliderMaxTrackColor = (Platform.OS !== 'ios') ? values.nogGreen : null;
-
 		return (
 			<View style={styles.container}>
 				<View style={styles.topBlock}>
 					<Text style={styles.description}>{pattern.description}</Text>
 					<View>
 						<Text style={styles.label}>speed</Text>
-						<Slider
-							minimumValue={1}
-							maximumValue={100}
-							step={1}
-							value={pattern.defaultSpeed}
-							minimumTrackTintColor={sliderMinTrackColor}
-							maximumTrackTintColor={sliderMaxTrackColor}
-							onSlidingComplete={this.speedSliderChange}
-							/>
-					</View>
-					{pattern.singleColor &&
-						<View>
-							<Text style={styles.label}>color</Text>
+						<View style={styles.sliderView}>
 							<Slider
 								minimumValue={1}
 								maximumValue={100}
 								step={1}
-								value={pattern.defaultColor}
+								value={pattern.defaultSpeed}
 								minimumTrackTintColor={values.nogGreen}
+								thumbStyle={styles.sliderThumb}
+								onSlidingComplete={this.speedSliderChange}
+								/>
+						</View>
+					</View>
+
+				{pattern.singleColor &&
+					<View>
+						<Text style={styles.label}>color</Text>
+						<View style={styles.gradientView}>
+							<Image
+								source={require('../img/playback/colorHueGradient.png')}
+								resizeMode={'contain'}
+								style={styles.gradientImg} />
+						</View>
+						<View style={styles.sliderView}>
+							<Slider
+								minimumValue={0}
+								maximumValue={360}
+								step={1}
+								value={180}
+								minimumTrackTintColor={values.nogGreen}
+								thumbStyle={styles.sliderThumb}
 								onSlidingComplete={this.hueSliderChange}
 								/>
+						</View>
+						<View style={styles.gradientView}>
+							<Image
+								source={require('../img/playback/colorValueGradient.png')}
+								resizeMode={'contain'}
+								style={styles.gradientImg} />
+						</View>
+						<View style={styles.sliderView}>
 							<Slider
-								minimumValue={1}
+								minimumValue={0}
 								maximumValue={100}
 								step={1}
-								value={pattern.defaultColor}
+								value={50}
 								minimumTrackTintColor={values.nogGreen}
+								thumbStyle={styles.sliderThumb}
 								onSlidingComplete={this.valueSliderChange}
 								/>
-						</View>}
+						</View>
+					</View>}
 				</View>
 
 				<View style={styles.bottomBlock}>
@@ -84,14 +100,14 @@ export default class PatternMultiColor extends React.Component {
 						<TouchableOpacity
 							onPress={() => this.togglePlayPause()} >
 							<Image
-								source={require('../img/playBtn.png')}
+								source={require('../img/playback/playBtn.png')}
 								style={styles.playBtn} />
 						</TouchableOpacity>
 						:
 						<TouchableOpacity
 							onPress={() => this.togglePlayPause()} >
 							<Image
-								source={require('../img/pauseBtn.png')}
+								source={require('../img/playback/pauseBtn.png')}
 								style={styles.playBtn} />
 						</TouchableOpacity>
 					}
@@ -102,6 +118,7 @@ export default class PatternMultiColor extends React.Component {
 	}
 }
 
+const sliderGradientWidth = Dimensions.get('window').width - 80;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -122,6 +139,27 @@ const styles = StyleSheet.create({
 		color: values.nogGrayText,
 		fontStyle: 'italic'
 	},
+	sliderView: {
+		paddingLeft: 10,
+		paddingRight: 10,
+	},
+	sliderThumb: {
+		height: 30,
+		width: 30,
+		borderRadius: 30 / 2,
+		borderWidth: 2,
+		borderColor: values.nogRed,
+		backgroundColor: 'white',
+	},
+	gradientView: {
+		flex: 1,
+		alignItems: 'center',
+		marginBottom: 20,
+		marginTop: 5
+	},
+	gradientImg: {
+		width: sliderGradientWidth,
+	},
 	bottomBlock: {
 		flex: 1,
 		justifyContent: 'center',
@@ -131,14 +169,5 @@ const styles = StyleSheet.create({
 		width: 100,
 		height: 100
 	}
-
-
 })
-
-
-
-
-
-
-
 
