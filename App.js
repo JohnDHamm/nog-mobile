@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { StyleSheet, Text, View, Image, Platform } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import Home from './src/screens/home';
 import NogSelect from './src/screens/nogSelect';
@@ -20,32 +20,43 @@ const StackNavigatorConfig = {
 
 const PlaylistTabNav = TabNavigator({
 	PatternList: {
-    screen: PatternList,
-    navigationOptions: {
-      tabBarLabel: 'Patterns',
-      // tabBarIcon: {}
-    }
-  },
-  SongList: {
-    screen: SongList,
-    navigationOptions: {
-      tabBarLabel: 'Songs'
-    }
-  },
+		screen: PatternList,
+		navigationOptions: {
+			tabBarLabel: 'Patterns',
+			tabBarIcon: ({ tintColor }) => (
+				<Image
+					source={require('./src/img/tabIcon_patterns.png')}
+					style={[styles.icon, {tintColor: tintColor}]}
+				/>
+			)
+		}
+	},
+	SongList: {
+		screen: SongList,
+		navigationOptions: {
+			tabBarLabel: 'Songs',
+			tabBarIcon: ({ tintColor }) => (
+				<Image
+					source={require('./src/img/tabIcon_songs.png')}
+					style={[styles.icon, {tintColor: tintColor}]}
+				/>
+			)
+		}
+	},
 }, {
-  // tabBarPosition: 'top',
-  animationEnabled: true,
-  tabBarOptions: {
-    activeTintColor: (Platform.OS === 'ios') ? values.nogRed : values.nogHighlight,
-    indicatorStyle: {
-    	backgroundColor: values.nogHighlight
-    },
-    style: {
-    	backgroundColor: (Platform.OS === 'ios') ? 'white' : values.nogGreen
-    }
+	// tabBarPosition: 'top',
+	animationEnabled: true,
+	tabBarOptions: {
+		activeTintColor: (Platform.OS === 'ios') ? values.nogRed : values.nogHighlight,
+		indicatorStyle: {
+			backgroundColor: values.nogHighlight
+		},
+		style: {
+			backgroundColor: (Platform.OS === 'ios') ? 'white' : values.nogGreen
+		}
 
 
-  },
+	},
 });
 
 const MainScreenNavigator = StackNavigator({
@@ -66,15 +77,15 @@ const MainScreenNavigator = StackNavigator({
 	PatternPlayback: {
 		screen: PatternPlayback,
 		navigationOptions: ({navigation}) => ({
-      title: navigation.state.params.name,
-      headerTitleStyle: {
+			title: navigation.state.params.name,
+			headerTitleStyle: {
 				color: 'white'
 			},
 			headerStyle: {
 				backgroundColor: values.nogRed
 			},
 			headerTintColor: 'white'
-    }) },
+		}) },
 	Community: { screen: Community },
 	Create: { screen: Create }
 }, StackNavigatorConfig);
@@ -86,3 +97,10 @@ export default class App extends React.Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	icon: {
+		height: 26,
+		width: 26
+	}
+})
