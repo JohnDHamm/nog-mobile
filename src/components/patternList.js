@@ -16,7 +16,7 @@ function selectGiftPattern(patternId, {navigation}) {
 }
 
 function truncDesc(desc) {
-	return (desc.length > 97) ? desc.slice(0, 98) + "..." : desc;
+	return (desc.length > 97) ? desc.slice(0, 97) + "..." : desc;
 }
 
 function renderList({navigation}) {

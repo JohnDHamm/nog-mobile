@@ -11,7 +11,7 @@ export default  TestGiftPatterns = {
 		patternId: 'gift02',
 		name: "Frosty's favorite",
 		singleColor: false,
-		description: "Thumpity-thump-thump. Thumpity-thump-thump. Look at Frosty go. Thumpity-thump-thump. Thumpity-thump-thump. Over the hills of snow!",
+		description: "Thumpity thump thump. Thumpity thump thump. Look at Frosty go. Thumpity thump thump. Thumpity thump thump. Over the hills of snow!",
 		defaultSpeed: 75
 	},
 	'gift03': {
