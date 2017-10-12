@@ -23,7 +23,7 @@ export default class Home extends React.Component {
 	};
 
 	componentDidMount() {
-		let pause = setTimeout(this.updateData.bind(this), 3000);
+		let pause = setTimeout(this.updateData.bind(this), 1000);
 	};
 
 	updateData() {

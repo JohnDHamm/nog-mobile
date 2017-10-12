@@ -86,7 +86,7 @@ const MainScreenNavigator = StackNavigator({
 			},
 			headerTintColor: 'white'
 		}) },
-	Community: { screen: Community },
+	Community: { screen: Community,},
 	Create: { screen: Create }
 }, StackNavigatorConfig);
 
