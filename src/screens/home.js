@@ -5,6 +5,7 @@ import HomeBtn from '../components/homeBtn';
 
 import TestUser from '../../testData/testUser';
 import TestPatterns from '../../testData/testPatterns';
+import TestGiftPatterns from '../../testData/testGiftPatterns';
 import TestSongs from '../../testData/testSongs';
 import values from '../styles/values';
 
@@ -16,12 +17,21 @@ export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			connected: false
+			BLE_connected: false,
+			dataLoaded: false
 		}
-	}
+	};
+
+	componentDidMount() {
+		let pause = setTimeout(this.updateData.bind(this), 3000);
+	};
+
+	updateData() {
+		this.setState({dataLoaded: true});
+	};
 
 	toggleConnect() {
-		this.setState({connected: !this.state.connected});
+		this.setState({BLE_connected: !this.state.BLE_connected});
 	};
 
 	render() {
@@ -40,9 +50,16 @@ export default class Home extends React.Component {
 					<Text style={styles.userName}>{TestUser.name}</Text>
 				</View>
 
+			{!this.state.dataLoaded &&
+				<View style={styles.loaderView}>
+					<Text style={styles.loaderText}>loading data...</Text>
+				</View>
+			}
+
+			{this.state.dataLoaded && <View>
 				<TouchableOpacity
 					onPress={() => this.toggleConnect()} >
-					{ !this.state.connected ?
+					{ !this.state.BLE_connected ?
 						<HomeBtn
 							color={values.nogDisabled}
 							height={65}
@@ -59,7 +76,7 @@ export default class Home extends React.Component {
 					}
 				</TouchableOpacity>
 
-				{ !this.state.connected ?
+				{ !this.state.BLE_connected ?
 					<HomeBtn
 						color={values.nogDisabled}
 						height={65}
@@ -68,7 +85,7 @@ export default class Home extends React.Component {
 						optionImgSrc={null} />
 					:
 					<TouchableOpacity
-						onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, songs: TestSongs })} >
+						onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, giftPatterns: TestGiftPatterns, songs: TestSongs })} >
 						<HomeBtn
 							color={values.nogGreen}
 							height={65}
@@ -97,11 +114,12 @@ export default class Home extends React.Component {
 						iconImgSrc={require('../img/homeBtnIcons/homeBtnIcon_community.png')}
 						optionImgSrc={require('../img/homeBtnIcons/notification_3.png')} />
 				</TouchableOpacity>
+			</View> }
 
 			</View>
 		)
 	}
-}
+};
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -140,4 +158,13 @@ const styles = StyleSheet.create({
 		width: 50,
 		height: 50
 	},
+	loaderView: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	loaderText: {
+		fontSize: 20,
+		color: 'white'
+	}
 });
