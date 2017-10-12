@@ -1,13 +1,18 @@
+import _ from 'lodash';
+
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, Image, Dimensions } from 'react-native';
 
 import HomeBtn from '../components/homeBtn';
-
 import TestUser from '../../testData/testUser';
 import TestPatterns from '../../testData/testPatterns';
 import TestGiftPatterns from '../../testData/testGiftPatterns';
 import TestSongs from '../../testData/testSongs';
 import values from '../styles/values';
+
+import axios from 'axios';
+const ROOT_URL = 'https://nog-server.herokuapp.com/api';
+
 
 export default class Home extends React.Component {
 	static navigationOptions = {
@@ -23,10 +28,25 @@ export default class Home extends React.Component {
 	};
 
 	componentDidMount() {
-		let pause = setTimeout(this.updateData.bind(this), 1000);
+		// let pause = setTimeout(this.updateData.bind(this), 1000);
+
+		axios.get(`${ROOT_URL}/userpatterns/${TestUser._id}`)
+			.then(function (response) {
+		    const dataArray = response.data;
+		    // console.log(dataArray);
+		    return dataArray;
+		  })
+		  .then((dataArray) => {
+		  	console.log("dataArray[0]", dataArray[0]);
+		  	this.updateData.bind(this);
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
 	};
 
 	updateData() {
+		console.log("got data!");
 		this.setState({dataLoaded: true});
 	};
 
