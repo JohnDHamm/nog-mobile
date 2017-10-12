@@ -3,6 +3,7 @@ export default  TestPatterns = {
 		patternId: 1,
 		name: 'blink',
 		singleColor: true,
+		defaultColor: 33,
 		description: 'Simple 2 step blink, alternates between inner/outer lights and the middle ring.',
 		defaultSpeed: 50
 	},
@@ -10,7 +11,6 @@ export default  TestPatterns = {
 		patternId: 2,
 		name: 'chase',
 		singleColor: false,
-		defaultColor: 33,
 		description: 'Starting at top, lights turn on (random color) in a clockwise direction, then turn off in same order, then repeat with new random color.',
 		defaultSpeed: 75
 	},
@@ -42,32 +42,32 @@ export default  TestPatterns = {
 		description: 'testing desc 6',
 		defaultSpeed: 50
 	},
-	7: {
-		patternId: 7,
-		name: 'test pattern 7',
-		singleColor: false,
-		description: 'testing desc 7',
-		defaultSpeed: 50
-	},
-	8: {
-		patternId: 8,
-		name: 'test pattern 8',
-		singleColor: false,
-		description: 'testing desc 8',
-		defaultSpeed: 50
-	},
-	9: {
-		patternId: 9,
-		name: 'test pattern 9',
-		singleColor: false,
-		description: 'testing desc 9',
-		defaultSpeed: 50
-	},
-	10: {
-		patternId: 10,
-		name: 'test pattern 10',
-		singleColor: false,
-		description: 'testing desc 10',
-		defaultSpeed: 50
-	}
+	// 7: {
+	// 	patternId: 7,
+	// 	name: 'test pattern 7',
+	// 	singleColor: false,
+	// 	description: 'testing desc 7',
+	// 	defaultSpeed: 50
+	// },
+	// 8: {
+	// 	patternId: 8,
+	// 	name: 'test pattern 8',
+	// 	singleColor: false,
+	// 	description: 'testing desc 8',
+	// 	defaultSpeed: 50
+	// },
+	// 9: {
+	// 	patternId: 9,
+	// 	name: 'test pattern 9',
+	// 	singleColor: false,
+	// 	description: 'testing desc 9',
+	// 	defaultSpeed: 50
+	// },
+	// 10: {
+	// 	patternId: 10,
+	// 	name: 'test pattern 10',
+	// 	singleColor: false,
+	// 	description: 'testing desc 10',
+	// 	defaultSpeed: 50
+	// }
 };

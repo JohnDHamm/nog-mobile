@@ -5,6 +5,7 @@ import HomeBtn from '../components/homeBtn';
 
 import TestUser from '../../testData/testUser';
 import TestPatterns from '../../testData/testPatterns';
+import TestGiftPatterns from '../../testData/testGiftPatterns';
 import TestSongs from '../../testData/testSongs';
 import values from '../styles/values';
 
@@ -68,7 +69,7 @@ export default class Home extends React.Component {
 						optionImgSrc={null} />
 					:
 					<TouchableOpacity
-						onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, songs: TestSongs })} >
+						onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, giftPatterns: TestGiftPatterns, songs: TestSongs })} >
 						<HomeBtn
 							color={values.nogGreen}
 							height={65}
