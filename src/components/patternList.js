@@ -5,8 +5,8 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import PatternColorIcon from './patternColorIcon';
 import values from '../styles/values';
 
-function selectPattern(patternId, {navigation}) {
-	const selectedPattern = navigation.state.params.patterns[patternId];
+function selectPattern(name, {navigation}) {
+	const selectedPattern = navigation.state.params.patterns[name];
 	navigation.navigate('PatternPlayback', selectedPattern );
 }
 
@@ -24,9 +24,9 @@ function renderList({navigation}) {
 	return _.map(patterns, pattern => {
 		return (
 			<TouchableOpacity
-				key={pattern.patternId}
+				key={pattern._id}
 				style={styles.listItem}
-				onPress={() => selectPattern(pattern.patternId, {navigation})} >
+				onPress={() => selectPattern(pattern.name, {navigation})} >
 				<View style={styles.topBlock}>
 					<Text style={styles.name}>{pattern.name}</Text>
 					{ pattern.singleColor ?

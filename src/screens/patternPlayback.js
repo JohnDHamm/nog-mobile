@@ -13,7 +13,7 @@ export default class PatternMultiColor extends React.Component {
 	}
 
 	componentDidMount() {
-		// console.log("this.props.navigation.state.params", this.props.navigation.state.params);
+		console.log("this.props.navigation.state.params", this.props.navigation.state.params);
 	}
 
 	speedSliderChange(val) {
