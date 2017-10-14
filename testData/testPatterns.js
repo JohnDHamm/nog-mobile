@@ -30,7 +30,7 @@ export default  TestPatterns = {
 	},
 	5: {
 		patternId: 5,
-		name: 'test pattern 5',
+		name: 'aaa test pattern 5',
 		singleColor: false,
 		description: 'testing desc 5',
 		defaultSpeed: 50

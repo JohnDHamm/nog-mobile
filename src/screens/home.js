@@ -1,13 +1,18 @@
+import _ from 'lodash';
+
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, Image, Dimensions } from 'react-native';
 
 import HomeBtn from '../components/homeBtn';
-
 import TestUser from '../../testData/testUser';
 import TestPatterns from '../../testData/testPatterns';
 import TestGiftPatterns from '../../testData/testGiftPatterns';
 import TestSongs from '../../testData/testSongs';
 import values from '../styles/values';
+
+import axios from 'axios';
+const ROOT_URL = 'https://nog-server.herokuapp.com/api/m';
+
 
 export default class Home extends React.Component {
 	static navigationOptions = {
@@ -18,16 +23,31 @@ export default class Home extends React.Component {
 		super(props);
 		this.state = {
 			BLE_connected: false,
-			dataLoaded: false
+			dataLoaded: false,
+			patterns: {},
+			giftPatterns: {},
+			songs: {}
 		}
 	};
 
 	componentDidMount() {
-		let pause = setTimeout(this.updateData.bind(this), 1000);
+		// let pause = setTimeout(this.updateData.bind(this), 1000);
+		// get gift patterns
+		// get user's patterns
+		axios.get(`${ROOT_URL}/userpatterns/${TestUser._id}`)
+			.then((response) => {
+		  	this.transformData(response.data);
+		  	this.setState({dataLoaded: true})
+
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
 	};
 
-	updateData() {
-		this.setState({dataLoaded: true});
+	transformData(dataArray) {
+		const newDataObj = _.mapKeys(dataArray, 'name');
+		this.setState({ patterns: newDataObj });
 	};
 
 	toggleConnect() {
@@ -85,7 +105,7 @@ export default class Home extends React.Component {
 						optionImgSrc={null} />
 					:
 					<TouchableOpacity
-						onPress={() => this.props.navigation.navigate('Playlist', { patterns: TestPatterns, giftPatterns: TestGiftPatterns, songs: TestSongs })} >
+						onPress={() => this.props.navigation.navigate('Playlist', { patterns: this.state.patterns, giftPatterns: TestGiftPatterns, songs: TestSongs })} >
 						<HomeBtn
 							color={values.nogGreen}
 							height={65}
