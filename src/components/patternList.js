@@ -119,9 +119,14 @@ const styles = StyleSheet.create({
 		color: values.nogGrayText
 	},
 	giftTitle: {
+		marginTop: 10,
+		marginBottom: 10,
+		paddingLeft: 15,
 		backgroundColor: values.nogGreen,
 	},
 	tempText: {
+		paddingTop: 5,
+		paddingBottom: 5,
 		fontSize: 25,
 		color: 'white'
 	}
