@@ -3,17 +3,33 @@ import { View, Text, StyleSheet, TouchableOpacity, Button, Image, Platform, Dime
 import Slider from 'react-native-slider';
 import values from '../styles/values';
 
+import axios from 'axios';
+const ROOT_URL = 'https://nog-server.herokuapp.com/api/m';
+
+
 export default class PatternMultiColor extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
+			dataLoaded: false,
+			patternData: [],
 			playing: false,
 		}
 	}
 
 	componentDidMount() {
-		console.log("this.props.navigation.state.params", this.props.navigation.state.params);
+		// console.log("this.props.navigation.state.params", this.props.navigation.state.params);
+		const patternId = this.props.navigation.state.params._id;
+		axios.get(`${ROOT_URL}/userpatterndata/${patternId}`)
+			.then((response) => {
+				console.log("data instances", response.data[0].instances);
+				this.setState({ patternData: response.data[0].instances });
+				this.setState({ dataLoaded: true });
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 	}
 
 	speedSliderChange(val) {
@@ -29,7 +45,7 @@ export default class PatternMultiColor extends React.Component {
 	}
 
 	togglePlayPause() {
-		this.state.playing ? console.log("playing via bluetooth") : console.log("paused");
+		!this.state.playing ? console.log("playing via bluetooth") : console.log("paused");
 		this.setState({ playing: !this.state.playing })
 	}
 
@@ -95,6 +111,13 @@ export default class PatternMultiColor extends React.Component {
 					</View>}
 				</View>
 
+			{!this.state.dataLoaded &&
+				<View style={styles.bottomBlock}>
+					<Text>loading data...</Text>
+				</View>
+			}
+
+			{this.state.dataLoaded &&
 				<View style={styles.bottomBlock}>
 					{ !this.state.playing ?
 						<TouchableOpacity
@@ -112,6 +135,7 @@ export default class PatternMultiColor extends React.Component {
 						</TouchableOpacity>
 					}
 				</View>
+			}
 
 			</View>
 		)
