@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
 import PatternColorIcon from './patternColorIcon';
 import values from '../styles/values';
 
@@ -56,7 +56,7 @@ function renderGiftList({navigation}) {
 				style={styles.listItem}
 				onPress={() => selectGiftPattern(pattern.name, {navigation})} >
 				<View style={styles.topBlock}>
-					<Text style={styles.name}>{pattern.name}</Text>
+					<Text style={styles.giftName}>{pattern.name}</Text>
 					{ pattern.singleColor ?
 						<PatternColorIcon
 							imgSrc={require('../img/patterns/singleColor_icon.png')}
@@ -81,8 +81,11 @@ const PatternList = ({navigation}) => (
 			<View>
 				{renderList( {navigation} )}
 			</View>
-			<View style={styles.giftTitle}>
-				<Text style={styles.tempText}>from: Santa</Text>
+			<View style={styles.giftTag}>
+				<Image
+					source={require('../img/santaGiftTag.png')}
+					resizeMode={'contain'}
+					style={styles.giftTagImg} />
 			</View>
 			<View>
 				{renderGiftList( {navigation} )}
@@ -110,6 +113,11 @@ const styles = StyleSheet.create({
 		color: '#000',
 		paddingRight: 5
 	},
+	giftName: {
+		fontSize: 25,
+		color: values.nogGreen,
+		paddingRight: 5
+	},
 	colorIcon: {
 		height: 25,
 		width: 50
@@ -118,18 +126,15 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		color: values.nogGrayText
 	},
-	giftTitle: {
-		marginTop: 10,
-		marginBottom: 10,
-		paddingLeft: 15,
-		backgroundColor: values.nogGreen,
+	giftTag: {
+		marginTop: 15,
+		marginBottom: 5,
+		paddingLeft: 5,
 	},
-	tempText: {
-		paddingTop: 5,
-		paddingBottom: 5,
-		fontSize: 25,
-		color: 'white'
-	}
+	giftTagImg:{
+		width: Dimensions.get('window').width - 10,
+		height: (Dimensions.get('window').width - 10) / 5.4
+	},
 });
 
 export default PatternList;
