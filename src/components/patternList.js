@@ -10,8 +10,8 @@ function selectPattern(name, {navigation}) {
 	navigation.navigate('PatternPlayback', selectedPattern );
 }
 
-function selectGiftPattern(patternId, {navigation}) {
-	const selectedPattern = navigation.state.params.giftPatterns[patternId];
+function selectGiftPattern(name, {navigation}) {
+	const selectedPattern = navigation.state.params.giftPatterns[name];
 	navigation.navigate('PatternPlayback', selectedPattern );
 }
 
@@ -52,9 +52,9 @@ function renderGiftList({navigation}) {
 	return _.map(giftPatterns, pattern => {
 		return (
 			<TouchableOpacity
-				key={pattern.patternId}
+				key={pattern.name}
 				style={styles.listItem}
-				onPress={() => selectGiftPattern(pattern.patternId, {navigation})} >
+				onPress={() => selectGiftPattern(pattern.name, {navigation})} >
 				<View style={styles.topBlock}>
 					<Text style={styles.name}>{pattern.name}</Text>
 					{ pattern.singleColor ?

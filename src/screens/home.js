@@ -31,23 +31,30 @@ export default class Home extends React.Component {
 	};
 
 	componentDidMount() {
-		// let pause = setTimeout(this.updateData.bind(this), 1000);
 		// get gift patterns
-		// get user's patterns
-		axios.get(`${ROOT_URL}/userpatterns/${TestUser._id}`)
+		const santaId = '598296cd172824a3e8d0d5e4';
+		axios.get(`${ROOT_URL}/userpatterns/${santaId}`)
 			.then((response) => {
-		  	this.transformData(response.data);
-		  	this.setState({dataLoaded: true})
-
-		  })
-		  .catch(function (error) {
-		    console.log(error);
-		  });
+				this.setState({ giftPatterns: this.transformData(response.data) });
+			})
+			.then(() => {
+				// get user's patterns
+				axios.get(`${ROOT_URL}/userpatterns/${TestUser._id}`)
+					.then((response) => {
+						this.setState({ patterns: this.transformData(response.data) });
+						this.setState({ dataLoaded: true });
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 	};
 
 	transformData(dataArray) {
-		const newDataObj = _.mapKeys(dataArray, 'name');
-		this.setState({ patterns: newDataObj });
+		return _.mapKeys(dataArray, 'name');
 	};
 
 	toggleConnect() {
@@ -105,7 +112,7 @@ export default class Home extends React.Component {
 						optionImgSrc={null} />
 					:
 					<TouchableOpacity
-						onPress={() => this.props.navigation.navigate('Playlist', { patterns: this.state.patterns, giftPatterns: TestGiftPatterns, songs: TestSongs })} >
+						onPress={() => this.props.navigation.navigate('Playlist', { patterns: this.state.patterns, giftPatterns: this.state.giftPatterns, songs: TestSongs })} >
 						<HomeBtn
 							color={values.nogGreen}
 							height={65}
