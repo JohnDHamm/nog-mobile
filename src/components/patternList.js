@@ -16,33 +16,35 @@ function selectGiftPattern(name, {navigation}) {
 }
 
 function truncDesc(desc) {
-	return (desc.length > 97) ? desc.slice(0, 97) + "..." : desc;
+	return (desc.length > 87) ? desc.slice(0, 87) + "..." : desc;
 }
 
 function renderList({navigation}) {
 	const { patterns } = navigation.state.params;
 	return _.map(patterns, pattern => {
 		return (
-			<TouchableOpacity
-				key={pattern._id}
-				style={styles.listItem}
-				onPress={() => selectPattern(pattern.name, {navigation})} >
-				<View style={styles.topBlock}>
-					<Text style={styles.name}>{pattern.name}</Text>
-					{ pattern.singleColor ?
-						<PatternColorIcon
-							imgSrc={require('../img/patterns/singleColor_icon.png')}
-							height={12} />
-						:
-						<PatternColorIcon
-							imgSrc={require('../img/patterns/multiColor_icon.png')}
-							height={12} />
-					}
-				</View>
-				<View>
-					<Text style={styles.description}>{truncDesc(pattern.description)}</Text>
-				</View>
-			</TouchableOpacity>
+			<View key={pattern._id}>
+				<TouchableOpacity
+					style={styles.listItem}
+					onPress={() => selectPattern(pattern.name, {navigation})} >
+					<View style={styles.topBlock}>
+						<Text style={styles.name}>{pattern.name}</Text>
+						{ pattern.singleColor ?
+							<PatternColorIcon
+								imgSrc={require('../img/patterns/singleColor_icon.png')}
+								height={12} />
+							:
+							<PatternColorIcon
+								imgSrc={require('../img/patterns/multiColor_icon.png')}
+								height={12} />
+						}
+					</View>
+					<View>
+						<Text style={styles.description}>{truncDesc(pattern.description)}</Text>
+					</View>
+				</TouchableOpacity>
+				<View style={styles.sectionLine} />
+			</View>
 		)
 	})
 }
@@ -51,26 +53,28 @@ function renderGiftList({navigation}) {
 	const { giftPatterns } = navigation.state.params;
 	return _.map(giftPatterns, pattern => {
 		return (
-			<TouchableOpacity
-				key={pattern.name}
-				style={styles.listItem}
-				onPress={() => selectGiftPattern(pattern.name, {navigation})} >
-				<View style={styles.topBlock}>
-					<Text style={styles.giftName}>{pattern.name}</Text>
-					{ pattern.singleColor ?
-						<PatternColorIcon
-							imgSrc={require('../img/patterns/singleColor_icon.png')}
-							height={12} />
-						:
-						<PatternColorIcon
-							imgSrc={require('../img/patterns/multiColor_icon.png')}
-							height={12} />
-					}
-				</View>
-				<View>
-					<Text style={styles.description}>{truncDesc(pattern.description)}</Text>
-				</View>
-			</TouchableOpacity>
+			<View key={pattern.name}>
+				<TouchableOpacity
+					style={styles.listItem}
+					onPress={() => selectGiftPattern(pattern.name, {navigation})} >
+					<View style={styles.topBlock}>
+						<Text style={styles.giftName}>{pattern.name}</Text>
+						{ pattern.singleColor ?
+							<PatternColorIcon
+								imgSrc={require('../img/patterns/singleColor_icon.png')}
+								height={12} />
+							:
+							<PatternColorIcon
+								imgSrc={require('../img/patterns/multiColor_icon.png')}
+								height={12} />
+						}
+					</View>
+					<View>
+						<Text style={styles.description}>{truncDesc(pattern.description)}</Text>
+					</View>
+				</TouchableOpacity>
+				<View style={styles.sectionLine} />
+			</View>
 		)
 	})
 }
@@ -90,6 +94,7 @@ const PatternList = ({navigation}) => (
 			<View>
 				{renderGiftList( {navigation} )}
 			</View>
+			<View style={styles.bottomPad} />
 		</ScrollView>
 	</View>
 )
@@ -101,8 +106,15 @@ const styles = StyleSheet.create({
 	},
 	listItem: {
 		paddingTop: 5,
-		paddingBottom: 5,
 		paddingLeft: 15,
+		paddingRight: 15
+	},
+	sectionLine: {
+		borderTopWidth: 1,
+		marginLeft: 15,
+		marginRight: 15,
+		marginTop: 10,
+		borderTopColor: values.nogLightGray
 	},
 	topBlock: {
 		flexDirection: 'row',
@@ -129,12 +141,15 @@ const styles = StyleSheet.create({
 	giftTag: {
 		marginTop: 15,
 		marginBottom: 5,
-		paddingLeft: 5,
+		paddingLeft: 10,
 	},
 	giftTagImg:{
-		width: Dimensions.get('window').width - 10,
-		height: (Dimensions.get('window').width - 10) / 5.4
+		width: Dimensions.get('window').width - 20,
+		height: (Dimensions.get('window').width - 20) / 5.4
 	},
+	bottomPad: {
+		height: 25
+	}
 });
 
 export default PatternList;
