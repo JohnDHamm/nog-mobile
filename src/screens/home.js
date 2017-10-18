@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Button, Image, Dimensions, StatusBar } from 'react-native';
 
 import HomeBtn from '../components/homeBtn';
 import TestUser from '../../testData/testUser';
@@ -64,6 +64,9 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
+			<StatusBar
+				barStyle="light-content"
+			/>
 				<View style={styles.nogTitle}>
 					<Image
 						style={styles.nogLogo}
