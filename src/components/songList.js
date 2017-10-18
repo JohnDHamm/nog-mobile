@@ -6,7 +6,7 @@ import values from '../styles/values';
 
 function selectSong(songId, {navigation}) {
 	const selectedSong = navigation.state.params.songs[songId];
-	console.log("selectedSong", selectedSong);
+	// console.log("selectedSong", selectedSong);
 	// navigation.navigate('PlaySong', selectedSong ); //need new component for handling playback of songs
 }
 

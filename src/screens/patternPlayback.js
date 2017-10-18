@@ -23,7 +23,7 @@ export default class PatternMultiColor extends React.Component {
 		const patternId = this.props.navigation.state.params._id;
 		axios.get(`${ROOT_URL}/userpatterndata/${patternId}`)
 			.then((response) => {
-				console.log("data instances", response.data[0].instances);
+				// console.log("data instances", response.data[0].instances);
 				this.setState({ patternData: response.data[0].instances });
 				this.setState({ dataLoaded: true });
 			})
@@ -45,7 +45,7 @@ export default class PatternMultiColor extends React.Component {
 	}
 
 	togglePlayPause() {
-		!this.state.playing ? console.log("playing via bluetooth") : console.log("paused");
+		// !this.state.playing ? console.log("playing via bluetooth") : console.log("paused");
 		this.setState({ playing: !this.state.playing })
 	}
 
